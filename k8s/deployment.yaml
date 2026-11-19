@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quotegenerator
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: quotegenerator
+  template:
+    metadata:
+      labels:
+        app: quotegenerator
+    spec:
+      containers:
+        - name: quotegenerator
+          image: cloudnotes-html:v1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: 50m
+              memory: 32Mi
+            limits:
+              cpu: 200m
+              memory: 64Mi
